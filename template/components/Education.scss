@@ -1,0 +1,27 @@
+@import '../mixins.scss';
+
+.education {
+  &__heading {
+    @include heading;
+  }
+}
+
+.education-entry {
+  margin: 0 0 10px;
+
+  &:last-of-type {
+    margin: 0;
+  }
+
+  &__header {
+    @include entryHeader;
+  }
+
+  &__heading {
+    @include entryHeading;
+  }
+
+  &__date-range {
+    @include entryDateRange;
+  }
+}

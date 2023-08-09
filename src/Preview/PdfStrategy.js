@@ -1,5 +1,5 @@
 import { writeFile } from 'fs/promises';
-import { getDirname } from '../utils.js';
+import { getAbsolutePath } from '../utils.js';
 
 /** @implements {import('./Preview.js').PreviewStrategy} */
 export class PdfStrategy {
@@ -14,8 +14,12 @@ export class PdfStrategy {
    */
   async run(page, browser) {
     const pdf = await page.pdf();
+    const resumeFilePath = getAbsolutePath('../resume.pdf');
 
-    await writeFile(getDirname('../../resume.pdf'), pdf);
+    // TODO Check why this path is wrong
+    await writeFile(resumeFilePath, pdf);
     await browser.close();
+
+    console.info(`resume.pdf saved in ${resumeFilePath}`);
   }
 }

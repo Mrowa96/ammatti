@@ -1,12 +1,15 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-export function getDirname(relativePath) {
-  const dirPath = fileURLToPath(new URL('.', import.meta.url));
+export function getDirname() {
+  return fileURLToPath(new URL('.', import.meta.url));
+}
 
-  if (!path) {
-    return dirPath;
+/** @param {string} relativePath */
+export function getAbsolutePath(relativePath) {
+  if (typeof relativePath !== 'string' || !relativePath.length) {
+    throw new Error('relativePath should be non-empty string.');
   }
 
-  return path.resolve(dirPath, relativePath);
+  return path.resolve(getDirname(), relativePath);
 }

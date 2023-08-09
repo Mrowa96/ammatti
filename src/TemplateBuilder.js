@@ -1,20 +1,9 @@
+import fs from 'fs/promises';
 import { build as viteBuild } from 'vite';
 import react from '@vitejs/plugin-react';
-import { getDirname } from './utils.js';
+import { getAbsolutePath } from './utils.js';
 
-const CONTENT_OUTLET_KEY = '/* CONTENT_OUTLET_KEY */';
-const HTML_TENPLATE = `
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Resume</title>
-    </head>
-    <body>
-        ${CONTENT_OUTLET_KEY}
-    </body>
-</html>
-`;
+const CONTENT_OUTLET_KEY = '<!-- CONTENT_OUTLET_KEY -->';
 
 export class TemplateBuilder {
   // TODO Handle multiple templates by name
@@ -28,18 +17,20 @@ export class TemplateBuilder {
 
   async build() {
     const buildOutput = await viteBuild({
-      root: getDirname('../template'),
+      root: getAbsolutePath('../template'),
       build: {
-        ssr: getDirname('../template/index.jsx'),
+        ssr: getAbsolutePath('../template/render.tsx'),
         cssCodeSplit: false,
       },
-      logLevel: 'silent',
+      // logLevel: 'silent',
       plugins: [react()],
     });
 
-    const { render } = await import(getDirname('../template/dist/index.js'));
+    const { render } = await import(getAbsolutePath('../template/dist/render.js'));
+    const { data: resumeData } = await import(getAbsolutePath('../data.js'));
+    const htmlTemplate = await fs.readFile(getAbsolutePath('../template/template.html'), { encoding: 'utf8' });
 
-    const html = HTML_TENPLATE.replace(CONTENT_OUTLET_KEY, render());
+    const html = htmlTemplate.replace(CONTENT_OUTLET_KEY, render(resumeData));
     // TODO Add additional checks
     const css = buildOutput.output.filter(({ name }) => name === 'style.css').at(0).source;
 
