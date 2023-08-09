@@ -1,11 +1,10 @@
 # ammatti
 
-- read template entry file (preferably jsx)
-- transform it through some tool - vite?
-- put contents to puppeteer
-- save it/open browser for develop
+## Requirements
 
-npm run generate --template=x/y/... - run headless chrome and save pdf to file with date etc
-npm run dev --template=x/y/... - open chrome with devtools
+Check package.json to see supported node.js and npm versions
 
-No TS, configuration is just too much for such simple project
+## Modes
+
+- dev - Run `npm run dev` to open browser with devtools to develop your resume
+- generate - Run `npm run generate` to generate and save resume to pdf file

@@ -17,6 +17,7 @@ const HTML_TENPLATE = `
 `;
 
 export class TemplateBuilder {
+  // TODO Handle multiple templates by name
   /** @param {string} name */
   #name;
 
@@ -39,7 +40,8 @@ export class TemplateBuilder {
     const { render } = await import(getDirname('../template/dist/index.js'));
 
     const html = HTML_TENPLATE.replace(CONTENT_OUTLET_KEY, render());
-    const css = buildOutput.output.filter(({ name }) => name === 'style.css').at(0);
+    // TODO Add additional checks
+    const css = buildOutput.output.filter(({ name }) => name === 'style.css').at(0).source;
 
     return {
       html,

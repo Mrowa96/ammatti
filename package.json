@@ -19,7 +19,7 @@
   "engineStrict": true,
   "scripts": {
     "start": "npm run dev",
-    "dev": "node dev.js",
+    "dev": "node develop.js",
     "generate": "node generate.js"
   },
   "dependencies": {

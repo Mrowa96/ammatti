@@ -7,8 +7,22 @@ import puppeteer from 'puppeteer';
  * }} PreviewData
  */
 
+/**
+ * @typedef {{
+ *   headless?: boolean;
+ *   devtools?: boolean;
+ * }} InitialiseConfig
+ */
+
+/**
+ * @typedef {{
+ *   initialiseConfig: InitialiseConfig;
+ *   run(page, browser)
+ * }} PreviewStrategy
+ */
+
 export class Preview {
-  // TODO Type it somehow
+  /** @type {PreviewStrategy} strategy */
   #strategy;
 
   /** @type {PreviewData}  */
@@ -19,9 +33,11 @@ export class Preview {
     this.#data = data;
   }
 
-  async #initialise() {
+  /** @param {InitialiseConfig} config */
+  async #initialise(config) {
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: !!config.headless ? 'new' : false,
+      devtools: config.devtools,
       // args: ['--disable-gpu', '--single-process', '--force-color-profile=srgb', '--no-sandbox'],
     });
 
@@ -36,13 +52,13 @@ export class Preview {
     return { browser, page };
   }
 
-  // TODO Type it somehow
+  /** @param {PreviewStrategy} strategy */
   setStrategy(strategy) {
     this.#strategy = strategy;
   }
 
   async run() {
-    const { page, browser } = await this.#initialise();
+    const { page, browser } = await this.#initialise(this.#strategy.initialiseConfig);
     await this.#strategy.run(page, browser);
   }
 }
