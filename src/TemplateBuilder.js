@@ -1,7 +1,6 @@
-import path from 'path';
 import { build as viteBuild } from 'vite';
-import { getDirname } from './utils.js';
 import react from '@vitejs/plugin-react';
+import { getDirname } from './utils.js';
 
 const CONTENT_OUTLET_KEY = '/* CONTENT_OUTLET_KEY */';
 const HTML_TENPLATE = `
@@ -28,22 +27,23 @@ export class TemplateBuilder {
 
   async build() {
     const buildOutput = await viteBuild({
-      root: path.resolve(getDirname(), '../template'),
+      root: getDirname('../template'),
       build: {
-        ssr: path.resolve(getDirname(), '../template/index.jsx'),
+        ssr: getDirname('../template/index.jsx'),
         cssCodeSplit: false,
       },
+      logLevel: 'silent',
       plugins: [react()],
     });
 
-    const { render } = await import(path.resolve(getDirname(), '../template/dist/index.js'));
+    const { render } = await import(getDirname('../template/dist/index.js'));
 
-    const content = HTML_TENPLATE.replace(CONTENT_OUTLET_KEY, render());
-    const styles = buildOutput.output.filter(({ name }) => name === 'style.css').at(0);
+    const html = HTML_TENPLATE.replace(CONTENT_OUTLET_KEY, render());
+    const css = buildOutput.output.filter(({ name }) => name === 'style.css').at(0);
 
     return {
-      content,
-      styles,
+      html,
+      css,
     };
   }
 }
