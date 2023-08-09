@@ -12,4 +12,11 @@ Check package.json to see supported node.js and npm versions
 ## Developer information
 
 - `tsconfig.json` is used only for templates for now
-- The reason why there is no TypeScript support for internal code is that tooling is quite complicated. `ts-node` is not supported anymore. It can be replaced by `swc` but this creates another layer with potential issues like. problems with dynamic imports. One possible way how to tackle this issue will be to switch to Deno.
+- The reason why there is no TypeScript support for internal code is that tooling is quite complicated.
+  `ts-node` is not supported anymore.
+  It can be replaced by `swc` but this creates another layer with potential issues like. problems with dynamic imports.
+  One possible way how to tackle this issue will be to switch to Deno?.
+- Consider making it a Electron app?
+- Handle svg
+- Try to not write to dist dorectory
+- Add hmr in dev mode somehow?

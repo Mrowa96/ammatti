@@ -1,0 +1,33 @@
+@import '../mixins.scss';
+
+.languages {
+  &__heading {
+    @include heading;
+  }
+
+  &__list {
+    @include tagsList;
+  }
+
+  &__item {
+    display: inline-flex;
+  }
+
+  &__language,
+  &__level {
+    @include tag;
+    border-color: var(--c-purple-light);
+  }
+
+  &__language {
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+  }
+
+  &__level {
+    border-radius: 0 8px 8px 0;
+    background: var(--c-purple-light);
+    color: var(--c-primary);
+    font-weight: 500;
+  }
+}

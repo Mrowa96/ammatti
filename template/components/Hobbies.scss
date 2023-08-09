@@ -1,0 +1,15 @@
+@import '../mixins.scss';
+
+.hobbies {
+  &__heading {
+    @include heading;
+  }
+
+  &__list {
+    @include tagsList;
+  }
+
+  &__hobby {
+    @include tag;
+  }
+}

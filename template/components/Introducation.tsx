@@ -1,4 +1,5 @@
-import { ResumeData } from '../types';
+import type { ResumeData } from '../types';
+import './Introducation.scss';
 
 type IntroducationProps = Pick<ResumeData['personalDetails'], 'name'>;
 

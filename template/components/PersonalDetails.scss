@@ -1,0 +1,48 @@
+@import '../mixins.scss';
+
+.personal-details {
+  &__heading {
+    @include heading;
+  }
+
+  &__subheading {
+    @include subheading;
+  }
+
+  &__block {
+    margin: 0 0 10px;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  &__socials {
+    padding: 0;
+    margin: 3px 0 0;
+    list-style-position: inside;
+    list-style-type: circle;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+    align-items: center;
+
+    & > li {
+      list-style: none;
+    }
+
+    & .information__link {
+      display: inline-flex;
+
+      & > svg {
+        fill: var(--c-grey);
+      }
+    }
+  }
+}

@@ -46,10 +46,8 @@ export class Preview {
     const page = await browser.newPage();
 
     await page.emulateMediaType('screen');
-    await page.setContent(this.#data.html);
-    await page.addStyleTag({
-      content: this.#data.css,
-    });
+    // We have to manually add style tag, because using addStyleTag method prevents fonts from loading
+    await page.setContent(`<style>${this.#data.css}</style>${this.#data.html}`, { waitUntil: 'networkidle2' });
 
     return { browser, page };
   }

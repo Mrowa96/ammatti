@@ -1,0 +1,31 @@
+@import '../mixins.scss';
+
+.skills {
+  &__heading {
+    @include heading;
+  }
+
+  &__subheading {
+    @include subheading;
+
+    &:first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  &__wrapper-by-level {
+    margin: 0 0 10px;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  &__skills-list {
+    @include tagsList;
+  }
+
+  &__skill {
+    @include tag;
+  }
+}
