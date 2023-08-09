@@ -38,6 +38,8 @@ export class Preview {
     const browser = await puppeteer.launch({
       headless: !!config.headless ? 'new' : false,
       devtools: config.devtools,
+      args: ['--no-default-browser-check'],
+      ignoreDefaultArgs: ['--enable-automation'],
       // args: ['--disable-gpu', '--single-process', '--force-color-profile=srgb', '--no-sandbox'],
     });
 
