@@ -17,18 +17,22 @@ export class TemplateBuilder {
 
   async build() {
     const buildOutput = await viteBuild({
-      root: getAbsolutePath('../template'),
+      root: getAbsolutePath(`../templates/${this.#name}`),
       build: {
-        ssr: getAbsolutePath('../template/render.tsx'),
+        outDir: getAbsolutePath('../template_dist'),
+        ssr: getAbsolutePath(`../templates/${this.#name}/render.tsx`),
         cssCodeSplit: false,
+        emptyOutDir: true,
       },
       // logLevel: 'silent',
       plugins: [react()],
     });
 
-    const { render } = await import(getAbsolutePath('../template/dist/render.js'));
+    const { render } = await import(getAbsolutePath('../template_dist/render.js'));
     const { data: resumeData } = await import(getAbsolutePath('../data.js'));
-    const htmlTemplate = await fs.readFile(getAbsolutePath('../template/template.html'), { encoding: 'utf8' });
+    const htmlTemplate = await fs.readFile(getAbsolutePath(`../templates/${this.#name}/template.html`), {
+      encoding: 'utf8',
+    });
 
     const html = htmlTemplate.replace(CONTENT_OUTLET_KEY, render(resumeData));
     // TODO Add additional checks

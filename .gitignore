@@ -1,5 +1,6 @@
 node_modules
-template/dist
+template_dist
 
 resume.pdf
 data.js
+.DS_Store

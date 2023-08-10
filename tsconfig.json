@@ -8,5 +8,5 @@
     "esModuleInterop": true,
     "jsx": "react-jsx"
   },
-  "include": ["./template"]
+  "include": ["templates"]
 }
