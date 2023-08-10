@@ -5,6 +5,11 @@ export type InitialiseConfig = {
   devtools?: boolean;
 };
 
+export type BuilderResult = {
+  html: string;
+  css: string;
+};
+
 export interface IPreviewStrategy {
   initialiseConfig: InitialiseConfig;
   run(page: Page, browser: Browser): Promise<void>;

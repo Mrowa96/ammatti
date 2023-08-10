@@ -2,19 +2,14 @@ import dir from "dir";
 import { join } from "path";
 import puppeteer from "puppeteer-core";
 import { Browser, install } from "@puppeteer/browsers";
-import type { InitialiseConfig, IPreviewStrategy } from "./types.ts";
-
-type PreviewData = {
-  html: string;
-  css: string;
-};
+import type { BuilderResult, InitialiseConfig, IPreviewStrategy } from "./types.ts";
 
 export class Preview {
   #strategy?: IPreviewStrategy;
 
   #data;
 
-  constructor(data: PreviewData) {
+  constructor(data: BuilderResult) {
     this.#data = data;
   }
 
