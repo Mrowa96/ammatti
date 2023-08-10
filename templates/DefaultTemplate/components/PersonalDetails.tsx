@@ -1,7 +1,7 @@
-import type { ResumeData } from '../types';
-import './PersonalDetails.scss';
+import type { ResumeData } from "../types.ts";
+import "./PersonalDetails.scss";
 
-type PersonalDetailsProps = Pick<ResumeData, 'personalDetails'>;
+type PersonalDetailsProps = Pick<ResumeData, "personalDetails">;
 
 export function PersonalDetails({ personalDetails }: PersonalDetailsProps) {
   return (
@@ -10,7 +10,7 @@ export function PersonalDetails({ personalDetails }: PersonalDetailsProps) {
 
       <div className="personal-details__block">
         <h2 className="personal-details__subheading">Phone</h2>
-        <a className="personal-details__link" href={`tel:${personalDetails.phone.replace(' ', '')}`}>
+        <a className="personal-details__link" href={`tel:${personalDetails.phone.replace(" ", "")}`}>
           {personalDetails.phone}
         </a>
       </div>

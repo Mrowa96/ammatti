@@ -1,12 +1,12 @@
-import type { ResumeData } from './types';
-import { Experiences } from './components/Experiences';
-import { Education } from './components/Education';
-import { Introducation } from './components/Introducation';
-import { PersonalDetails } from './components/PersonalDetails';
-import { Skills } from './components/Skills';
-import { Languages } from './components/Languages';
-import { Hobbies } from './components/Hobbies';
-import './DefaultTemplate.scss';
+import { Experiences } from "./components/Experiences.tsx";
+import { Education } from "./components/Education.tsx";
+import { Introducation } from "./components/Introducation.tsx";
+import { PersonalDetails } from "./components/PersonalDetails.tsx";
+import { Skills } from "./components/Skills.tsx";
+import { Languages } from "./components/Languages.tsx";
+import { Hobbies } from "./components/Hobbies.tsx";
+import type { ResumeData } from "./types.ts";
+import "./DefaultTemplate.scss";
 
 type DefaultTemplateProps = {
   data: ResumeData;

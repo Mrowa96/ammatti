@@ -1,7 +1,7 @@
-import type { ResumeData } from '../types';
-import './Introducation.scss';
+import type { ResumeData } from "../types.ts";
+import "./Introducation.scss";
 
-type IntroducationProps = Pick<ResumeData['personalDetails'], 'name'>;
+type IntroducationProps = Pick<ResumeData["personalDetails"], "name">;
 
 export function Introducation({ name }: IntroducationProps) {
   return (
