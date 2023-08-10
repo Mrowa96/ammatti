@@ -3,6 +3,8 @@ import { build as viteBuild } from "vite";
 import vitePluginReact from "@vitejs/plugin-react";
 import type { BuilderResult } from "./Preview/types.ts";
 
+type BuildResult = Awaited<ReturnType<typeof viteBuild>>;
+
 export class TemplateBuilder {
   #name;
 
@@ -14,10 +16,9 @@ export class TemplateBuilder {
     const buildResult = await viteBuild({
       root: resolve(`templates/${this.#name}`),
       build: {
-        outDir: resolve("template_dist"),
         ssr: resolve(`templates/${this.#name}/render.tsx`),
         cssCodeSplit: false,
-        emptyOutDir: true,
+        write: false,
         rollupOptions: {
           external: [
             "react/jsx-runtime",
@@ -31,7 +32,7 @@ export class TemplateBuilder {
     });
 
     const { data: resumeData } = await import(resolve("data.js"));
-    const html = await this.#prepareHtml(resumeData);
+    const html = await this.#prepareHtml(buildResult, resumeData);
     const css = this.#prepareCss(buildResult);
 
     return {
@@ -40,20 +41,26 @@ export class TemplateBuilder {
     };
   }
 
-  async #prepareHtml(resumeData: unknown) {
-    const { render } = await import(resolve("template_dist/render.mjs"));
+  async #prepareHtml(buildResult: BuildResult, resumeData: unknown) {
+    if (!("output" in buildResult)) {
+      throw new Error("Build result have to be an object with 'output' property as an array.");
+    }
 
-    const decoder = new TextDecoder("utf-8");
-    const htmlTemplate = decoder.decode(
-      await Deno.readFile(resolve(`templates/${this.#name}/template.html`)),
-    );
+    const renderChunk = buildResult.output.find(({ name }) => name === "render");
 
+    if (!renderChunk || !("code" in renderChunk)) {
+      throw new Error("renderChunk has to have 'code' property.");
+    }
+
+    // More details about this approach here https://2ality.com/2019/10/eval-via-import.html
+    const { render } = await import("data:text/javascript;charset=utf-8," + renderChunk.code);
+    const htmlTemplate = await Deno.readTextFile(resolve(`templates/${this.#name}/template.html`));
     const html = htmlTemplate.replace("<!-- CONTENT_OUTLET_KEY -->", render(resumeData));
 
     return html;
   }
 
-  #prepareCss(buildResult: Awaited<ReturnType<typeof viteBuild>>) {
+  #prepareCss(buildResult: BuildResult) {
     if (!("output" in buildResult)) {
       throw new Error("Build result have to be an object with 'output' property as an array.");
     }

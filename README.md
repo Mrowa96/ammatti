@@ -20,5 +20,4 @@ Template has to contain few required files:
 
 - Consider making it a Electron app?
 - Handle svg
-- Try to not write to dist [directory](https://2ality.com/2019/10/eval-via-import.html)
 - Add hmr in dev mode somehow?
