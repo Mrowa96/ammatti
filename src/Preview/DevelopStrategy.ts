@@ -14,7 +14,7 @@ export class DevelopStrategy implements IPreviewStrategy {
     devtools: true,
   };
 
-  async run(page: Page, browser: Browser) {
+  run(page: Page, browser: Browser) {
     page.addStyleTag({
       content: DEVELOP_STYLES,
     });
@@ -23,5 +23,7 @@ export class DevelopStrategy implements IPreviewStrategy {
       await browser.close();
       Deno.exit();
     });
+
+    return Promise.resolve(undefined);
   }
 }
