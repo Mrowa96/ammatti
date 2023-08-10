@@ -25,7 +25,7 @@ export class TemplateBuilder {
           ],
         },
       },
-      // logLevel: 'silent',
+      logLevel: "warn",
       // @ts-ignore: https://github.com/vitejs/vite-plugin-react/issues/104
       plugins: [vitePluginReact()],
     });
