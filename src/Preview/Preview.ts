@@ -1,7 +1,7 @@
 import dir from "dir";
 import { join } from "path";
 import puppeteer from "puppeteer-core";
-import { Browser, install } from "@puppeteer/browsers";
+import { Browser, detectBrowserPlatform, install, resolveBuildId } from "@puppeteer/browsers";
 import type { BuilderResult, InitialiseConfig, IPreviewStrategy } from "./types.ts";
 
 export class Preview {
@@ -17,38 +17,47 @@ export class Preview {
     const denoCacheDir = dir("cache");
 
     if (!denoCacheDir) {
-      throw new Error("Deno cache dir cannot be empty");
+      throw new Error("Deno cache dir cannot be empty.");
+    }
+
+    const platform = detectBrowserPlatform();
+
+    if (!platform) {
+      throw new Error("Cannot detect platform.");
     }
 
     const { executablePath } = await install({
       browser: Browser.CHROME,
-      // TODO Use dynamic version
-      buildId: "113.0.5672.0",
-      // buildId: await resolveBuildId({
-      //   browser: 'chrome',
-      //   platform: 'mac_arm',
-      //   tag: 'stable'
-      // }),
+      buildId: await resolveBuildId(Browser.CHROME, platform, "stable"),
       cacheDir: join(denoCacheDir, "puppeteer"),
     });
 
     const browser = await puppeteer.launch({
       headless: config.headless ? "new" : false,
       devtools: config.devtools,
-      args: ["--no-default-browser-check"],
+      args: ["--no-default-browser-check", "--force-color-profile=srgb"],
       ignoreDefaultArgs: ["--enable-automation"],
       executablePath,
-      // args: ['--disable-gpu', '--single-process', '--force-color-profile=srgb', '--no-sandbox'],
     });
 
     const page = await browser.newPage();
 
     await page.emulateMediaType("screen");
-    // We have to manually add style tag, because using addStyleTag method prevents fonts from loading
     await page.setContent(
-      `<style>${this.#data.css}</style>${this.#data.html}`,
+      this.#data.html,
       { waitUntil: "networkidle2" },
     );
+    await page.addStyleTag({
+      content: this.#data.css,
+    });
+
+    /**
+     * Puppeteer has problem with font rendering in pdf mode.
+     * It doesn't wait long enough for fonts to fetch and swap.
+     * This is the "clearest" workaround.
+     * mMore info about the issue here: https://github.com/puppeteer/puppeteer/issues/422
+     */
+    await page.waitForFunction("document.fonts.ready");
 
     return { browser, page };
   }
@@ -65,6 +74,7 @@ export class Preview {
     const { page, browser } = await this.#initialise(
       this.#strategy.initialiseConfig,
     );
+
     await this.#strategy.run(page, browser);
   }
 }

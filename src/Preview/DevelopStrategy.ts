@@ -14,16 +14,19 @@ export class DevelopStrategy implements IPreviewStrategy {
     devtools: true,
   };
 
-  run(page: Page, browser: Browser) {
-    page.addStyleTag({
+  async run(page: Page, browser: Browser) {
+    await page.addStyleTag({
       content: DEVELOP_STYLES,
+    });
+
+    page.on("close", async function onPageClose() {
+      await browser.close();
+      Deno.exit();
     });
 
     Deno.addSignalListener("SIGINT", async function onSIGINT() {
       await browser.close();
       Deno.exit();
     });
-
-    return Promise.resolve(undefined);
   }
 }
