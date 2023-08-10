@@ -1,5 +1,7 @@
-import { renderToStaticMarkup } from 'react-dom/server';
-import { DefaultTemplate } from './DefaultTemplate';
-import type { ResumeData } from './types';
+import { renderToStaticMarkup } from "react-dom/server";
+import { DefaultTemplate } from "./DefaultTemplate.tsx";
+import type { ResumeData } from "./types.ts";
 
-export const render = (data: ResumeData) => renderToStaticMarkup(<DefaultTemplate data={data} />);
+export function render(data: ResumeData) {
+  return renderToStaticMarkup(<DefaultTemplate data={data} />);
+}

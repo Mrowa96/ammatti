@@ -1,4 +1,7 @@
 {
-  "recommendations": ["esbenp.prettier-vscode"],
+  "recommendations": [
+    "denoland.vscode-deno",
+    "tomoki1207.pdf"
+  ],
   "unwantedRecommendations": []
 }

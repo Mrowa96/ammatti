@@ -1,7 +1,7 @@
-import type { ResumeData } from '../types';
-import './Languages.scss';
+import type { ResumeData } from "../types.ts";
+import "./Languages.scss";
 
-type LanguagesProps = Pick<ResumeData, 'languages'>;
+type LanguagesProps = Pick<ResumeData, "languages">;
 
 export function Languages({ languages }: LanguagesProps) {
   return (
@@ -9,8 +9,8 @@ export function Languages({ languages }: LanguagesProps) {
       <h1 className="languages__heading">Languages</h1>
 
       <ul className="languages__list">
-        {languages.map(language => (
-          <li className="languages__item">
+        {languages.map((language, index) => (
+          <li className="languages__item" key={index}>
             <span className="languages__language">{language.name}</span>
             <span className="languages__level">{language.level}</span>
           </li>

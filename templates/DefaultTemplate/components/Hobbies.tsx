@@ -1,7 +1,7 @@
-import type { ResumeData } from '../types';
-import './Hobbies.scss';
+import type { ResumeData } from "../types.ts";
+import "./Hobbies.scss";
 
-type HobbiesProps = Pick<ResumeData, 'hobbies'>;
+type HobbiesProps = Pick<ResumeData, "hobbies">;
 
 export function Hobbies({ hobbies }: HobbiesProps) {
   return (
@@ -9,9 +9,7 @@ export function Hobbies({ hobbies }: HobbiesProps) {
       <h1 className="hobbies__heading">Hobbies</h1>
 
       <ul className="hobbies__list">
-        {hobbies.map(hobby => (
-          <li className="hobbies__hobby">{hobby}</li>
-        ))}
+        {hobbies.map((hobby, index) => <li className="hobbies__hobby" key={index}>{hobby}</li>)}
       </ul>
     </section>
   );
