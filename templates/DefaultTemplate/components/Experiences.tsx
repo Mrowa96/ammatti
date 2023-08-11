@@ -15,7 +15,7 @@ export function Experiences({ experiences }: ExperiencesProps) {
               <time dateTime={experience.dateFrom.toISOString()}>
                 {experience.dateFrom.toLocaleDateString("en-GB", { dateStyle: "medium" })}
               </time>
-              <span>-</span>
+              <span>{" "}-{" "}</span>
               {index === 0
                 ? (
                   "now"
