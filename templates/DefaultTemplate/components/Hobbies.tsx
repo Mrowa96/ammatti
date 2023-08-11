@@ -1,4 +1,4 @@
-import type { ResumeData } from "../types.ts";
+import type { ResumeData } from "../../../src/types.ts";
 import "./Hobbies.scss";
 
 type HobbiesProps = Pick<ResumeData, "hobbies">;
