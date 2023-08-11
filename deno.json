@@ -2,6 +2,7 @@
   "imports": {
     "@puppeteer/browsers": "npm:@puppeteer/browsers@1.5.1",
     "@vitejs/plugin-react": "npm:@vitejs/plugin-react@4.0.4",
+    "assert": "https://deno.land/std@0.197.0/assert/mod.ts",
     "dir": "https://deno.land/x/dir@1.5.1/mod.ts",
     "path": "https://deno.land/std@0.197.0/path/mod.ts",
     "puppeteer-core": "npm:puppeteer-core@21.0.2",

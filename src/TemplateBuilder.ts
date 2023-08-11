@@ -31,7 +31,7 @@ export class TemplateBuilder {
       plugins: [vitePluginReact()],
     });
 
-    const { data: resumeData } = await import(resolve("data.js"));
+    const { data: resumeData } = await import(resolve("data.ts"));
     const html = await this.#prepareHtml(buildResult, resumeData);
     const css = this.#prepareCss(buildResult);
 

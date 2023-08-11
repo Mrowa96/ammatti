@@ -5,7 +5,7 @@ import { PersonalDetails } from "./components/PersonalDetails.tsx";
 import { Skills } from "./components/Skills.tsx";
 import { Languages } from "./components/Languages.tsx";
 import { Hobbies } from "./components/Hobbies.tsx";
-import type { ResumeData } from "./types.ts";
+import type { ResumeData } from "../../src/types.ts";
 import "./DefaultTemplate.scss";
 
 type DefaultTemplateProps = {
