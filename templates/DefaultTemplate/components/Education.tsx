@@ -13,11 +13,11 @@ export function Education({ education }: EducationProps) {
           <header className="education-entry__header">
             <div className="education-entry__date-range">
               <time dateTime={educationEntry.dateFrom.toISOString()}>
-                {educationEntry.dateFrom.toLocaleDateString("en-GB", { year: "numeric" })}
+                {educationEntry.dateFrom.toLocaleDateString("pl", { year: "numeric" })}
               </time>
-              <span>-</span>
+              <span>{" "}-{" "}</span>
               <time dateTime={educationEntry.dateTo.toISOString()}>
-                {educationEntry.dateTo.toLocaleDateString("en-GB", { year: "numeric" })}
+                {educationEntry.dateTo.toLocaleDateString("pl", { year: "numeric" })}
               </time>
             </div>
 

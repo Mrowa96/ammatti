@@ -13,18 +13,22 @@ export function Experiences({ experiences }: ExperiencesProps) {
           <header className="experience__header">
             <div className="experience__date-range">
               <time dateTime={experience.dateFrom.toISOString()}>
-                {experience.dateFrom.toLocaleDateString("en-GB", { dateStyle: "medium" })}
+                {experience.dateFrom.toLocaleDateString("pl", {
+                  year: "numeric",
+                  month: "numeric",
+                })}
               </time>
               <span>{" "}-{" "}</span>
-              {index === 0
+              {experience.dateTo
                 ? (
-                  "now"
-                )
-                : (
                   <time dateTime={experience.dateTo.toISOString()}>
-                    {experience.dateTo.toLocaleDateString("en-GB", { dateStyle: "medium" })}
+                    {experience.dateTo.toLocaleDateString("pl", {
+                      year: "numeric",
+                      month: "numeric",
+                    })}
                   </time>
-                )}
+                )
+                : "now"}
             </div>
 
             <h2 className="experience__company-name">

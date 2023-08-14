@@ -16,7 +16,7 @@ export type ResumeData = {
       websiteUrl?: string;
     };
     dateFrom: Date;
-    dateTo: Date;
+    dateTo?: Date;
     role: string;
     content: string;
   }[];
