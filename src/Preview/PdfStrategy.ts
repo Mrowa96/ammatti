@@ -1,4 +1,5 @@
 import { resolve } from "path";
+import { info } from "../logger.ts";
 import type { Browser, IPreviewStrategy, Page } from "./types.ts";
 
 export class PdfStrategy implements IPreviewStrategy {
@@ -24,6 +25,6 @@ export class PdfStrategy implements IPreviewStrategy {
     await Deno.writeFile(resumeFilePath, pdf);
     await browser.close();
 
-    console.info(`resume.pdf saved in ${resumeFilePath}`);
+    info(`resume.pdf saved in ${resumeFilePath}`);
   }
 }

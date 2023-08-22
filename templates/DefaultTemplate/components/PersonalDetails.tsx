@@ -9,18 +9,21 @@ export function PersonalDetails({ personalDetails }: PersonalDetailsProps) {
       <h1 className="personal-details__heading">Information</h1>
 
       <div className="personal-details__block">
-        <h2 className="personal-details__subheading">Phone</h2>
-        <a className="personal-details__link" href={`tel:${personalDetails.phone.replace(" ", "")}`}>
-          {personalDetails.phone}
-        </a>
-      </div>
-
-      <div className="personal-details__block">
         <h2 className="personal-details__subheading">Email</h2>
         <a className="personal-details__link" href={`mailto:${personalDetails.email}`}>
           {personalDetails.email}
         </a>
       </div>
+
+      {personalDetails.phone &&
+        (
+          <div className="personal-details__block">
+            <h2 className="personal-details__subheading">Phone</h2>
+            <a className="personal-details__link" href={`tel:${personalDetails.phone.replaceAll(" ", "")}`}>
+              {personalDetails.phone}
+            </a>
+          </div>
+        )}
 
       {personalDetails.website && (
         <div className="personal-details__block">

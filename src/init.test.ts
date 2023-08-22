@@ -1,5 +1,5 @@
-import { assertSpyCallArg, resolvesNext, stub } from "mock";
-import { describe, it } from "bdd";
+import { assertSpyCallArg, resolvesNext, stub } from "testing/mock";
+import { describe, it } from "testing/bdd";
 import { equal } from "assert";
 import { init } from "./init.ts";
 import { InitDataFileAlreadyExists } from "./errors.ts";

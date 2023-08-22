@@ -1,8 +1,8 @@
 export type ResumeData = {
   personalDetails: {
     name: string;
-    phone: string;
     email: string;
+    phone?: string;
     website?: string;
     socials?: {
       github?: string;

@@ -1,5 +1,5 @@
 import { equal } from "assert";
-import { describe, it } from "bdd";
+import { describe, it } from "testing/bdd";
 import { defineData } from "./defineData.ts";
 import type { ResumeData } from "./types.ts";
 

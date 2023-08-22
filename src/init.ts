@@ -1,9 +1,25 @@
 import { InitDataFileAlreadyExists } from "./errors.ts";
+import { info, warn } from "./logger.ts";
 
 const dataFileContent = `
 import { defineData } from "./src/defineData.ts";
 
-export const data = defineData({ /* Define data here */ });
+/* Define your data below */
+export const data = defineData({
+  personalDetails: {
+    name: "John Doe",
+    email: "john-doe@mail.xyz",
+  },
+  experiences: [],
+  languages: [],
+  education: [],
+  skills: {
+    advanced: [],
+    good: [],
+    average: [],
+  },
+  hobbies: [],
+});
 `;
 
 export async function init() {
@@ -12,12 +28,14 @@ export async function init() {
 
   try {
     await Deno.writeTextFile("./data.ts", dataFileContent, { createNew: true });
+
+    info("File data.ts was successfully created.");
   } catch (error) {
     ok = false;
 
     if (error instanceof Deno.errors.AlreadyExists) {
       code = InitDataFileAlreadyExists;
-      console.warn("Terminating, file data.ts already exists");
+      warn("Terminating, file data.ts already exists.");
     }
   }
 
