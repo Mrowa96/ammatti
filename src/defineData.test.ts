@@ -1,9 +1,12 @@
 import { equal } from "assert";
+import { describe, it } from "bdd";
 import { defineData } from "./defineData.ts";
 import type { ResumeData } from "./types.ts";
 
-Deno.test("defineData should return the same object", () => {
-  const data = {};
+describe("defineData", () => {
+  it("should return the same object", () => {
+    const data = {};
 
-  equal(defineData(data as ResumeData), data);
+    equal(defineData(data as ResumeData), data);
+  });
 });

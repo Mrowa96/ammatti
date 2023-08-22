@@ -4,15 +4,13 @@
 
 - Deno 1.36
 
-## Preparing data
+## How to use?
 
-Before generating resume, data has to be prepared by using `defineData` function in `data.ts` file. This is solution for
-now, later on it will be probably possible to configure it. `data.ts` won't be commited to repository.
-
-## Modes
-
-- `dev` - Run `deno task develop` to open browser with devtools to develop your resume
-- `generate` - Run `deno task generate` to generate and save resume to pdf file
+1. Run `deno task init`. It will create `data.ts` file where you will have to fill out. File `data.ts` won't be commited
+   to repository nor overwritten by calling init task again.
+2. Run app in one of two modes:
+   - `dev` - Run `deno task develop` to open browser with devtools to develop your resume.
+   - `generate` - Run `deno task generate` to generate and save resume to pdf file.
 
 ## New template
 
