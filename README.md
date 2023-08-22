@@ -7,7 +7,7 @@
 ## How to use?
 
 1. Run `deno task init`. It will create `data.ts` file where you will have to fill out. File `data.ts` won't be commited
-   to repository nor overwritten by calling init task again.
+   to repository. It won't be also overwritten by calling init task again unless explicit confirmation.
 2. Run app in one of two modes:
    - `dev` - Run `deno task develop` to open browser with devtools to develop your resume.
    - `generate` - Run `deno task generate` to generate and save resume to pdf file.

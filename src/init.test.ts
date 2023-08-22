@@ -2,7 +2,7 @@ import { assertSpyCallArg, resolvesNext, stub } from "testing/mock";
 import { describe, it } from "testing/bdd";
 import { equal } from "assert";
 import { init } from "./init.ts";
-import { InitDataFileAlreadyExists } from "./errors.ts";
+import { InitDataFileAlreadyExistsCode } from "./errors.ts";
 
 describe("init", () => {
   it("should create data.ts file and return success", async () => {
@@ -24,7 +24,18 @@ describe("init", () => {
 
     const initResults = await init();
 
-    equal(initResults, { ok: false, code: InitDataFileAlreadyExists });
+    equal(initResults, { ok: false, code: InitDataFileAlreadyExistsCode });
+
+    writeTextFileStub.restore();
+  });
+
+  it("should override file and return success", async () => {
+    const writeTextFileStub = stub(Deno, "writeTextFile", resolvesNext([undefined]));
+
+    const initResults = await init(true);
+
+    equal(initResults, { ok: true, code: undefined });
+    assertSpyCallArg(writeTextFileStub, 0, 2, { createNew: false });
 
     writeTextFileStub.restore();
   });

@@ -1,5 +1,4 @@
-import { InitDataFileAlreadyExists } from "./errors.ts";
-import { info, warn } from "./logger.ts";
+import { InitDataFileAlreadyExistsCode, UndefinedCode } from "./errors.ts";
 
 const dataFileContent = `
 import { defineData } from "./src/defineData.ts";
@@ -22,25 +21,26 @@ export const data = defineData({
 });
 `;
 
-export async function init() {
-  let ok = true;
-  let code;
+type InitReturn = { ok: true; code: undefined } | { ok: false; code: number };
 
+export async function init(overwriteDataFile?: boolean): Promise<InitReturn> {
   try {
-    await Deno.writeTextFile("./data.ts", dataFileContent, { createNew: true });
+    await Deno.writeTextFile("./data.ts", dataFileContent, { createNew: !overwriteDataFile });
 
-    info("File data.ts was successfully created.");
+    return {
+      ok: true,
+      code: undefined,
+    };
   } catch (error) {
-    ok = false;
+    let code = UndefinedCode;
 
     if (error instanceof Deno.errors.AlreadyExists) {
-      code = InitDataFileAlreadyExists;
-      warn("Terminating, file data.ts already exists.");
+      code = InitDataFileAlreadyExistsCode;
     }
-  }
 
-  return {
-    ok,
-    code,
-  };
+    return {
+      ok: false,
+      code,
+    };
+  }
 }

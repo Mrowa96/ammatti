@@ -1,1 +1,2 @@
-export const InitDataFileAlreadyExists = 100;
+export const InitDataFileAlreadyExistsCode = 100;
+export const UndefinedCode = 100;
