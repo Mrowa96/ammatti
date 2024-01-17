@@ -11,7 +11,7 @@ export class PdfStrategy implements IPreviewStrategy {
     const pdf = await page.pdf({
       // TODO Take it somehow from template data
       width: 900,
-      height: 1230,
+      height: 1290,
       margin: {
         bottom: 30,
         top: 30,

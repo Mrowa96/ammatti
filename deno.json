@@ -1,22 +1,22 @@
 {
   "imports": {
-    "@puppeteer/browsers": "npm:@puppeteer/browsers@1.5.1",
-    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@4.0.4",
-    "assert": "https://deno.land/std@0.198.0/assert/mod.ts",
-    "dir": "https://deno.land/x/dir@1.5.1/mod.ts",
-    "fmt/color": "https://deno.land/std@0.198.0/fmt/colors.ts",
-    "path": "https://deno.land/std@0.198.0/path/mod.ts",
-    "puppeteer-core": "npm:puppeteer-core@21.0.2",
+    "@puppeteer/browsers": "npm:@puppeteer/browsers@1.9.1",
+    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@4.2.1",
+    "assert": "https://deno.land/std@0.212.0/assert/mod.ts",
+    "dir": "https://deno.land/x/dir@1.5.2/mod.ts",
+    "fmt/color": "https://deno.land/std@0.212.0/fmt/colors.ts",
+    "path": "https://deno.land/std@0.212.0/path/mod.ts",
+    "puppeteer-core": "npm:puppeteer-core@21.7.0",
     "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime?dts",
     "react-dom/server": "https://esm.sh/react-dom@18.2.0/server?dts",
-    "sass": "npm:sass@1.64.2",
-    "testing/mock": "https://deno.land/std@0.198.0/testing/mock.ts",
-    "testing/bdd": "https://deno.land/std@0.198.0/testing/bdd.ts",
-    "vite": "npm:vite@4.4.9"
+    "sass": "npm:sass@1.69.7",
+    "testing/mock": "https://deno.land/std@0.212.0/testing/mock.ts",
+    "testing/bdd": "https://deno.land/std@0.212.0/testing/bdd.ts",
+    "vite": "npm:vite@5.0.11"
   },
   "tasks": {
     "init": "deno run --allow-write init.ts",
-    "develop": "deno run -A --node-modules-dir develop.ts",
+    "develop": "deno run -A --node-modules-dir --unstable-hmr develop.ts",
     "generate": "deno run -A --node-modules-dir generate.ts"
   },
   "fmt": {

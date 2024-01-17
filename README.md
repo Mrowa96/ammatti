@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Deno 1.36
+- Deno 1.39
 
 ## How to use?
 
