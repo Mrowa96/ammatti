@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@puppeteer/browsers": "npm:@puppeteer/browsers@1.9.1",
+    "@puppeteer/browsers": "npm:@puppeteer/browsers@2.2.3",
     "@vitejs/plugin-react": "npm:@vitejs/plugin-react@4.2.1",
     "assert": "https://deno.land/std@0.212.0/assert/mod.ts",
     "dir": "https://deno.land/x/dir@1.5.2/mod.ts",
