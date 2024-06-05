@@ -8,18 +8,19 @@ export class PdfStrategy implements IPreviewStrategy {
   };
 
   async run(page: Page, browser: Browser) {
+    const bodyNode = await page.$('body');
+    const boundingBox = await bodyNode?.boundingBox()
+
+    if (!boundingBox) {
+      throw new Error('Cannot detect page dimensions, something is wrong.')
+    }
+
     const pdf = await page.pdf({
-      // TODO Take it somehow from template data
-      width: 900,
-      height: 1290,
-      margin: {
-        bottom: 30,
-        top: 30,
-        left: 50,
-        right: 50,
-      },
+      width: boundingBox.width,
+      height: Math.ceil(boundingBox.height),
     });
-    // TODO Save file with timestamp
+
+    // TODO Save file with timestamp as an option
     const resumeFilePath = resolve("resume.pdf");
 
     await Deno.writeFile(resumeFilePath, pdf);

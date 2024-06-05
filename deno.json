@@ -16,7 +16,7 @@
   },
   "tasks": {
     "init": "deno run --allow-write init.ts",
-    "develop": "deno run -A --node-modules-dir --unstable-hmr develop.ts",
+    "develop": "deno run -A --node-modules-dir develop.ts",
     "generate": "deno run -A --node-modules-dir generate.ts"
   },
   "fmt": {

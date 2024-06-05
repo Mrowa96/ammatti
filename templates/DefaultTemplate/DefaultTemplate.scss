@@ -27,9 +27,11 @@ html {
   line-height: 1.2;
   margin: 0;
   width: 100%;
+  max-width: 800px;
 }
 
 body {
+  padding: 30px 50px;
   min-height: 100%;
   display: grid;
   grid-template-columns: 7fr 3fr;
