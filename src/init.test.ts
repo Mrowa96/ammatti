@@ -1,6 +1,6 @@
-import { assertSpyCallArg, resolvesNext, stub } from "testing/mock";
-import { describe, it } from "testing/bdd";
-import { equal } from "assert";
+import { assertSpyCallArg, resolvesNext, stub } from "@std/testing/mock";
+import { describe, it } from "@std/testing/bdd";
+import { equal } from "@std/assert";
 import { init } from "./init.ts";
 import { InitDataFileAlreadyExistsCode } from "./errors.ts";
 

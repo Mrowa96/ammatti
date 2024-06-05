@@ -1,8 +1,7 @@
-import { resolve } from "path";
+import { resolve } from "@std/path";
 import { build as viteBuild } from "vite";
 // We have to have it here to allow Deno to resolve the import which is used inside vite
-// deno-lint-ignore no-unused-vars
-import sass from "sass"
+import _sass from "sass";
 import vitePluginReact from "@vitejs/plugin-react";
 import type { BuilderResult } from "./Preview/types.ts";
 
@@ -30,7 +29,6 @@ export class TemplateBuilder {
         },
       },
       logLevel: "warn",
-      // @ts-ignore: https://github.com/vitejs/vite-plugin-react/issues/104
       plugins: [vitePluginReact()],
     });
 

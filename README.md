@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- Deno 1.39
+- Deno 1.44
 
 ## How to use?
 
@@ -17,7 +17,7 @@
 Template has to contain few required files:
 
 - `template.html` - simple html into which content will be injected
-- `render.tsx` - module exporting `render` function which will return content
+- `render.tsx` - module exporting `render` function which will return content as a `string`
 
 ## Ideas
 

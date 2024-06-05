@@ -1,18 +1,17 @@
 {
   "imports": {
     "@puppeteer/browsers": "npm:@puppeteer/browsers@2.2.3",
-    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@4.2.1",
-    "assert": "https://deno.land/std@0.212.0/assert/mod.ts",
+    "@std/assert": "jsr:@std/assert@^0.226.0",
+    "@std/fmt": "jsr:@std/fmt@^0.225.3",
+    "@std/path": "jsr:@std/path@^0.225.2",
+    "@std/testing": "jsr:@std/testing@^0.225.0",
+    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@4.3.0",
     "dir": "https://deno.land/x/dir@1.5.2/mod.ts",
-    "fmt/color": "https://deno.land/std@0.212.0/fmt/colors.ts",
-    "path": "https://deno.land/std@0.212.0/path/mod.ts",
-    "puppeteer-core": "npm:puppeteer-core@21.7.0",
-    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime?dts",
-    "react-dom/server": "https://esm.sh/react-dom@18.2.0/server?dts",
-    "sass": "npm:sass@1.69.7",
-    "testing/mock": "https://deno.land/std@0.212.0/testing/mock.ts",
-    "testing/bdd": "https://deno.land/std@0.212.0/testing/bdd.ts",
-    "vite": "npm:vite@5.0.11"
+    "puppeteer-core": "npm:puppeteer-core@22.10.0",
+    "react-dom/server": "https://esm.sh/react-dom@18.3.0/server?dts",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.0/jsx-runtime?dts",
+    "sass": "npm:sass@1.77.4",
+    "vite": "npm:vite@5.2.12"
   },
   "tasks": {
     "init": "deno run --allow-write init.ts",
@@ -20,7 +19,9 @@
     "generate": "deno run -A --node-modules-dir generate.ts"
   },
   "fmt": {
-    "lineWidth": 120
+    "options": {
+      "lineWidth": 120
+    }
   },
   "compilerOptions": {
     "jsx": "react-jsx"

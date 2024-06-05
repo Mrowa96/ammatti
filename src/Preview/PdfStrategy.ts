@@ -1,4 +1,4 @@
-import { resolve } from "path";
+import { resolve } from "@std/path";
 import { info } from "../logger.ts";
 import type { Browser, IPreviewStrategy, Page } from "./types.ts";
 
@@ -8,11 +8,11 @@ export class PdfStrategy implements IPreviewStrategy {
   };
 
   async run(page: Page, browser: Browser) {
-    const bodyNode = await page.$('body');
-    const boundingBox = await bodyNode?.boundingBox()
+    const bodyNode = await page.$("body");
+    const boundingBox = await bodyNode?.boundingBox();
 
     if (!boundingBox) {
-      throw new Error('Cannot detect page dimensions, something is wrong.')
+      throw new Error("Cannot detect page dimensions, something is wrong.");
     }
 
     const pdf = await page.pdf({

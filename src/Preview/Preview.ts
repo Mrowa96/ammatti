@@ -1,5 +1,5 @@
 import dir from "dir";
-import { join } from "path";
+import { join } from "@std/path";
 import puppeteer from "puppeteer-core";
 import { Browser, detectBrowserPlatform, install, resolveBuildId } from "@puppeteer/browsers";
 import type { BuilderResult, InitialiseConfig, IPreviewStrategy } from "./types.ts";

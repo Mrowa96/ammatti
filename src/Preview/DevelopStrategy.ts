@@ -17,6 +17,6 @@ export class DevelopStrategy implements IPreviewStrategy {
       Deno.exit();
     });
 
-    return Promise.resolve()
+    return Promise.resolve();
   }
 }

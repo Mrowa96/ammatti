@@ -1,4 +1,4 @@
-import { blue, red, white, yellow } from "fmt/color";
+import { blue, red, white, yellow } from "@std/fmt/colors";
 
 export function error(message: string) {
   console.log(red(message));
