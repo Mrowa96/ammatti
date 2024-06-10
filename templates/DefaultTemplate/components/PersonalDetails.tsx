@@ -3,6 +3,14 @@ import "./PersonalDetails.scss";
 
 type PersonalDetailsProps = Pick<ResumeData, "personalDetails">;
 
+function PhoneLink({ value }: { value: string }) {
+  return (
+    <a className="personal-details__link" href={`tel:${value.replaceAll(" ", "")}`}>
+      {value}
+    </a>
+  );
+}
+
 export function PersonalDetails({ personalDetails }: PersonalDetailsProps) {
   return (
     <section className="sidebar__section personal-details">
@@ -19,9 +27,14 @@ export function PersonalDetails({ personalDetails }: PersonalDetailsProps) {
         (
           <div className="personal-details__block">
             <h2 className="personal-details__subheading">Phone</h2>
-            <a className="personal-details__link" href={`tel:${personalDetails.phone.replaceAll(" ", "")}`}>
-              {personalDetails.phone}
-            </a>
+            {Array.isArray(personalDetails.phone)
+              ? personalDetails.phone.map((value, index) => (
+                <>
+                  <PhoneLink key={value} value={value} />
+                  {personalDetails.phone?.length !== index + 1 ? ", " : ""}
+                </>
+              ))
+              : <PhoneLink value={personalDetails.phone} />}
           </div>
         )}
 

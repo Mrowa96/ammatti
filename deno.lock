@@ -8,6 +8,7 @@
       "jsr:@std/path@^0.225.2": "jsr:@std/path@0.225.2",
       "jsr:@std/testing@^0.225.0": "jsr:@std/testing@0.225.0",
       "npm:@puppeteer/browsers@2.2.3": "npm:@puppeteer/browsers@2.2.3",
+      "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:@vitejs/plugin-react@4.3.0": "npm:@vitejs/plugin-react@4.3.0_vite@5.2.12_@babel+core@7.24.6",
       "npm:puppeteer-core@22.10.0": "npm:puppeteer-core@22.10.0_devtools-protocol@0.0.1286932",
       "npm:sass@1.77.4": "npm:sass@1.77.4",
@@ -1268,6 +1269,9 @@
         "dependencies": {}
       }
     }
+  },
+  "redirects": {
+    "https://esm.sh/v128/@types/react@~18/jsx-runtime~.d.ts": "https://esm.sh/v128/@types/react@18.2.38/jsx-runtime~.d.ts"
   },
   "remote": {
     "https://deno.land/std@0.204.0/assert/assert.ts": "9a97dad6d98c238938e7540736b826440ad8c1c1e54430ca4c4e623e585607ee",
